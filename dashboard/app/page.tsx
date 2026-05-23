@@ -155,8 +155,8 @@ export default function HomePage() {
               color: "var(--muted)",
             }}
           >
-            LTV = total subscription revenue per subscriber (subscription_started
-            + subscription_renewed events).
+            LTV = total subscription revenue per subscriber (subscription_started + subscription_renewed events). 
+            Avg LTV and Total Revenue are computed independently; minor differences from rounding are expected.
           </p>
         </section>
       )}
