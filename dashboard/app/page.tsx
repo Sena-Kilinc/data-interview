@@ -93,7 +93,7 @@ export default function HomePage() {
                   Paying Users
                 </th>
                 <th style={{ padding: "0.4rem 0.75rem", textAlign: "right" }}>
-                  Avg LTV
+                  Avg Revenue / Paying User
                 </th>
                 <th style={{ padding: "0.4rem 0.75rem", textAlign: "right" }}>
                   Total Revenue
@@ -155,8 +155,8 @@ export default function HomePage() {
               color: "var(--muted)",
             }}
           >
-            LTV = total subscription revenue per subscriber (subscription_started + subscription_renewed events). 
-            Avg LTV and Total Revenue are computed independently; minor differences from rounding are expected.
+            Revenue includes subscription_started and subscription_renewed events. 
+            Non-paying users are excluded from the average.
           </p>
         </section>
       )}
