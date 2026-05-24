@@ -1,76 +1,74 @@
-# Papcorns Data Scientist Technical Assessment
+# Papcorns — Data Scientist Technical Assessment
 
-Welcome to Papcorns' Data Scientist technical assessment! This task is designed to evaluate your skills in data analysis, SQL, Python, lightweight visualization (Next.js dashboard), and machine learning (bonus).
+**Candidate:** Sena Kılınç
+**Role:** Jr. Data Scientist
+**Date:** 24 May 2026
 
-## Dataset Description
+---
 
-You are provided with a SQLite database (`papcorns.sqlite`) containing two tables:
+## Repository Structure
 
-### Users Table
-- `id`: Unique identifier for each user (numeric)
-- `created_at`: User creation timestamp (ISO date string)
-- `attribution_source`: User acquisition source (tiktok, instagram, or organic)
-- `country`: User's country (US, TR, or NL)
-- `name`: User's name
+```
+├── dashboard/                  # Bonus Task 7 — Next.js revenue dashboard
+│   ├── app/
+│   │   ├── api/subscription-revenue-breakdown/route.ts
+│   │   ├── globals.css
+│   │   ├── layout.tsx
+│   │   └── page.tsx
+│   ├── next.config.ts
+│   ├── package.json
+│   └── tsconfig.json
+├── getting_started.ipynb       # Starter notebook (provided)
+├── papcorns.sqlite             # Dataset
+├── requirements.txt
+├── submission.ipynb            # Core analysis — Tasks 1–6 & Task 8
+└── README.md
+```
 
-### User Events Table
-- `id`: Unique event identifier (numeric)
-- `created_at`: Event timestamp (ISO date string)
-- `user_id`: Reference to users table (numeric)
-- `event_name`: Type of event (app_install, trial_started, trial_cancelled, subscription_started, subscription_renewed, subscription_cancelled)
-- `amount_usd`: Transaction amount in USD (numeric)
+---
 
-## Tasks
+## Setup
 
-Please complete the following tasks using Python and SQL. You can use any libraries you're comfortable with, but make sure to explain your approach and methodology.
+### Python — Tasks 1–6 & Task 8
 
-### SQL requirement (core tasks)
+```bash
+pip install -r requirements.txt
+jupyter notebook submission.ipynb
+```
 
-**We assess SQL skills for tasks 1–6.** Solve these using **SQL queries** against `papcorns.sqlite` (for example via `sqlite3`, SQLAlchemy, or `pandas.read_sql` with your logic expressed in SQL). Implementing the core metrics only with in-memory dataframe operations (without equivalent SQL) does not meet what we are evaluating. You may still use Python for orchestration, visualization, and to run or parameterize queries.
+> Requires Python 3.8+.
 
-The dashboard bonus task is a small **Next.js** app under `dashboard/` . It intentionally contains only a simple starter example; candidates should replace it with their own API/query and chart.
+### Dashboard — Task 7 (Bonus)
 
-### Core Tasks
+```bash
+cd dashboard
+npm install
+npm run dev
+```
 
-1. Calculate the total revenue generated from subscriptions for each country.
-2. Calculate the total number of trials given to users who came from Instagram.
-3. Create a new column named 'acquisition_channel' by categorizing users based on their 'attribution_source':
-   - 'Paid': users from instagram or tiktok
-   - 'Organic': users from organic sources
-4. Analyze the trial-to-subscription conversion rate:
-   - Calculate the overall conversion rate
-   - Break down the conversion rate by attribution_source
-5. Calculate the median subscription duration (in months) for each country
-6. Calculate the Average Lifetime Value (LTV) by country
+Open [http://localhost:3000](http://localhost:3000). The app expects `papcorns.sqlite` at the repository root, one level above `dashboard/`.
 
-### BONUS Tasks (Optional)
+---
 
-7. **Dashboard (Next.js)** — Create one chart showing **average revenue per paying user by country**.
-   - Write the API/query in `dashboard/app/api/subscription-revenue-breakdown/route.ts` (look for `WRITE THE API QUERY HERE`).
-   - Add the chart in `dashboard/app/page.tsx` (look for `ADD THE CHART HERE`).
-   - See `dashboard/README.md` for local setup and run instructions.
+## What's Completed
 
-8. Predict the predicted Lifetime Value (pLTV) for user #1001 (Bruce Wayne)
-   - Explain your methodology and assumptions
+| Task | Description | Status |
+|------|-------------|--------|
+| 1 | Total subscription revenue by country | ✅ |
+| 2 | Total trials from Instagram users | ✅ |
+| 3 | Acquisition channel categorisation | ✅ |
+| 4 | Trial-to-subscription conversion rate (overall + by source) | ✅ |
+| 5 | Median subscription duration by country | ✅ |
+| 6 | Average LTV by country | ✅ |
+| 7 | Next.js dashboard — avg revenue per paying user by country | ✅ |
+| 8 | Predicted LTV for user #1001 (Bruce Wayne) | ✅ |
 
-## Evaluation Criteria
+All core tasks (1–6) are solved using SQL queries via `pandas.read_sql_query`. Python is used for orchestration, visualisation, and the final median calculation in Task 5 (SQLite has no built-in `MEDIAN`).
 
-Your submission will be evaluated based on:
+---
 
-1. **Code Quality**
+## Notes
 
-2. **Analysis Quality**
-
-3. **Communication**
-
-## Submission Guidelines
-
-Please provide:
-1. Fork or create a new repository based on this template
-2. Write your submissions for Tasks 1-6 and 8(bonus) in the submission.ipynb
-3. If you complete the dashboard bonus task (Task 7), include your changes under `dashboard/` (the app should run with `npm install` and `npm run dev` from that folder)
-4. Comment on code or a brief report explaining your approach and findings
-5. Any assumptions you made during the analysis
-6. Send us the link to your repository to nur@papcorns.com
-
-Good luck!
+- **Analysis date** is derived dynamically from `MAX(created_at)` in the events table (2025-07-12) rather than hardcoded.
+- **Active subscribers** (no cancellation event) are treated as censored at the analysis date — a conservative lower bound for duration and LTV estimates.
+- All findings, methodology, assumptions, and visualisations are documented inline in `submission.ipynb`.
