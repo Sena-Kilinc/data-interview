@@ -39,7 +39,7 @@ export default function HomePage() {
     <main>
       <h1>Papcorns Revenue Dashboard</h1>
       <p className="subtitle">
-        Task 7 · Average revenue per paying subscriber by country
+        Task 7. Average revenue per paying subscriber by country
       </p>
 
       {/* ── Chart 1: Avg revenue per paying user ── */}
