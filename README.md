@@ -1,4 +1,4 @@
-# Papcorns — Data Scientist Technical Assessment
+# Papcorns - Data Scientist Technical Assessment
 
 **Candidate:** Sena Kılınç
 **Role:** Jr. Data Scientist
@@ -9,7 +9,7 @@
 ## Repository Structure
 
 ```
-├── dashboard/                  # Bonus Task 7 — Next.js revenue dashboard
+├── dashboard/                  # Bonus Task 7 - Next.js revenue dashboard
 │   ├── app/
 │   │   ├── api/subscription-revenue-breakdown/route.ts
 │   │   ├── globals.css
@@ -21,7 +21,7 @@
 ├── getting_started.ipynb       # Starter notebook (provided)
 ├── papcorns.sqlite             # Dataset
 ├── requirements.txt
-├── submission.ipynb            # Core analysis — Tasks 1–6 & Task 8
+├── submission.ipynb            # Core analysis - Tasks 1–6 & Task 8
 └── README.md
 ```
 
@@ -29,7 +29,7 @@
 
 ## Setup
 
-### Python — Tasks 1–6 & Task 8
+### Python - Tasks 1–6 & Task 8
 
 ```bash
 pip install -r requirements.txt
@@ -38,7 +38,7 @@ jupyter notebook submission.ipynb
 
 > Requires Python 3.8+.
 
-### Dashboard — Task 7 (Bonus)
+### Dashboard - Task 7 (Bonus)
 
 ```bash
 cd dashboard
@@ -60,7 +60,7 @@ Open [http://localhost:3000](http://localhost:3000). The app expects `papcorns.s
 | 4 | Trial-to-subscription conversion rate (overall + by source) | ✅ |
 | 5 | Median subscription duration by country | ✅ |
 | 6 | Average LTV by country | ✅ |
-| 7 | Next.js dashboard — avg revenue per paying user by country | ✅ |
+| 7 | Next.js dashboard - avg revenue per paying user by country | ✅ |
 | 8 | Predicted LTV for user #1001 (Bruce Wayne) | ✅ |
 
 All core tasks (1–6) are solved using SQL queries via `pandas.read_sql_query`. Python is used for orchestration, visualisation, and the final median calculation in Task 5 (SQLite has no built-in `MEDIAN`).
@@ -70,5 +70,5 @@ All core tasks (1–6) are solved using SQL queries via `pandas.read_sql_query`.
 ## Notes
 
 - **Analysis date** is derived dynamically from `MAX(created_at)` in the events table (2025-07-12) rather than hardcoded.
-- **Active subscribers** (no cancellation event) are treated as censored at the analysis date — a conservative lower bound for duration and LTV estimates.
+- **Active subscribers** (no cancellation event) are treated as censored at the analysis date; a conservative lower bound for duration and LTV estimates.
 - All findings, methodology, assumptions, and visualisations are documented inline in `submission.ipynb`.
